@@ -15,6 +15,8 @@ module Gentone
       sender = Sender.new
       cards = Querinator::Importer.new.parse(@path)
       cards.shuffle.each do |card|
+        puts "\n   Playing  #{card.pose.upcase}\n\n"
+
         sender.send card.pose
 
         print "What was that code?\n-> "
@@ -25,7 +27,7 @@ module Gentone
           puts "Hooray!!"
         else
           puts "oooooh."
-          puts "The correct answer was '#{card.answer}'"
+          puts "The correct answer was '#{card.answer.upcase}'"
         end
       end
     end

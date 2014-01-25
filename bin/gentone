@@ -6,7 +6,7 @@ require "highline/import"
 choices = Dir.entries File.join(File.dirname(__FILE__), "..", "spec")
 choices.delete_if { |file| !(file =~ /\.json/) }
 
-say("Time to practice some CW!\n")
+say("\nTime to practice some CW!\n")
 choose do |menu|
   menu.prompt = "\nWhich letters would you like to practice?  "
 
