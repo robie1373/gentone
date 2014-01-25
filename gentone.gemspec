@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Gentone::VERSION
   spec.authors       = ["Robie Lutsey"]
   spec.email         = ["robie1373@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{play dits and dahs for CW aka morse code. Feed it a string and it plays sounds. os x only.}
+  spec.summary       = %q{play dits and dahs for CW aka morse code}
   spec.homepage      = ""
   spec.license       = "MIT"
 
