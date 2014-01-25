@@ -23,6 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
 
   spec.add_dependency "coreaudio"
-  spec.add_dependency "querinator", "~> 0.0.2"
-  spec.add_dependency "highline", "~> 1.6.20"
+  # spec.add_dependency "highline", "~> 1.6.20"
 end

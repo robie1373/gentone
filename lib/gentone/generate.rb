@@ -1,16 +1,16 @@
 require "coreaudio"
 
 module Gentone
-  class Generate
-    def initialize(dit_length)
-      @dit_length = dit_length
-    end
+  class Generator
 
     def generate(duration, freq = 600.0)
+      sec_duration = duration / 1_000.0
+      frequency = freq * 1.0
+
       dev = CoreAudio.default_output_device
       buf = dev.output_buffer(1024)
 
-      phase = Math::PI * 2.0 * 600.0 / dev.nominal_rate
+      phase = Math::PI * 2.0 * frequency / dev.nominal_rate
       th = Thread.start do
         i = 0
         wav = NArray.sint(1024)
@@ -22,31 +22,12 @@ module Gentone
       end
 
       buf.start
-      sleep duration
+      sleep sec_duration
       buf.stop
 
       th.kill.join
     end
 
-    def dit 
-      generate(@dit_length)
-    end
-
-    def dah
-      generate(3 * @dit_length)
-    end
-
-    def element_pause
-      sleep @dit_length
-    end
-
-    def letter_pause
-      sleep @dit_length * 3
-    end
-
-    def word_pause
-      sleep @dit_length * 7
-    end
 
   end
 end

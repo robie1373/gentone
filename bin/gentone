@@ -1,19 +1,31 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/gentone'
-require "highline/import"
+require "optparse"
 
-choices = Dir.entries File.join(File.dirname(__FILE__), "..", "spec")
-choices.delete_if { |file| !(file =~ /\.json/) }
+args = {:duration => 500, :freq => 600}
 
-say("\nTime to practice some CW!\n")
-choose do |menu|
-  menu.prompt = "\nWhich letters would you like to practice?  "
+option_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: gentone [args]"
 
-  choices.each do |ch|
-    menu.choice ch do @filename = ch end
+  opts.on('-f FREQUENCY', '--frequency', 'Tone frequency in Hz [600]', Integer) do |freq|
+    unless freq > 1 && freq.integer?
+      raise ArgumentError, "frequency must be a positive integer"
+    end
+    args[:freq] = freq
+  end
+
+  opts.on('-d DURATION', '--duration', 'Tone duration in millis [500]', Integer) do |duration|
+    unless duration > 1 && duration.integer?
+      raise ArgumentError, "duration must be a positive integer"
+    end
+    args[:duration] = duration
   end
 
 end
 
-Gentone::Runner.new(@filename).run
+option_parser.parse!
+
+puts args
+
+Gentone::Runner.new.run(args[:duration], args[:freq])
