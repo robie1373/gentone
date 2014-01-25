@@ -1,3 +1,19 @@
 #!/usr/bin/env ruby
 
-require 'gentone'
+require_relative '../lib/gentone'
+require "highline/import"
+
+choices = Dir.entries File.join(File.dirname(__FILE__), "..", "spec")
+choices.delete_if { |file| !(file =~ /\.json/) }
+
+say("Time to practice some CW!\n")
+choose do |menu|
+  menu.prompt = "\nWhich letters would you like to practice?  "
+
+  choices.each do |ch|
+    menu.choice ch do @filename = ch end
+  end
+
+end
+
+Gentone::Runner.new(@filename).run
