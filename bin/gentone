@@ -26,6 +26,4 @@ end
 
 option_parser.parse!
 
-puts args
-
 Gentone::Runner.new.run(args[:duration], args[:freq])

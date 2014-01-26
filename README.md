@@ -1,6 +1,6 @@
 # Gentone
 
-TODO: Write a gem description
+gentone plays a tone of arbitrary frequency and length through your computer's default sound card. Works on OS X only.
 
 ## Installation
 
@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    Usage: gentone [args]
+    -f, --frequency FREQUENCY        Tone frequency in Hz [600]
+    -d, --duration DURATION          Tone duration in millis [500]
 
 ## Contributing
 
